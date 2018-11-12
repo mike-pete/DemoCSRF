@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bank</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+
+  <div class="row">
+    <form class="col s2 offset-s5" action="/bank" method="get">
+      <div class="card teal lighten-2 white-text">
+        <div class="card-content ">
+          <span class="card-title" id="balance"></span>
+          <div class="card-action white">
+            <input type="number" min="0" class="input-field validate" name="transfer" placeholder="Amount">
+            <button class="btn waves-effect waves-light teal" type="submit" value="submit">Transfer Money</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+
+    //update the acount balance with ajax
+    window.onload =  function(){
+      const xhttp = new XMLHttpRequest()
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("balance").innerHTML = 'Current Balance: $' + this.responseText
+        }
+      }
+      xhttp.open("GET", "/balance", true)
+      xhttp.send()
+
+      //no form submit on reload
+      var stateObj = {}
+      history.replaceState(stateObj, "bank", "/bank")
+    }
+
+  </script>
+
+</body>
+</html>
