@@ -13,4 +13,4 @@ To Use:
    -The image's src allows the attacker to automatically make a GET request as you. <br>
    -When your browser tries to load the image, money is automatically sent to the attacker.<br>
 
-4. Reload the page, you are now missing $100!
+4. Reload the bank page, you are now missing $100!
